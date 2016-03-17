@@ -5,16 +5,12 @@ int main(int argc, char** argv) {
 	char recvline[MAXLINE + 1];
 	struct sockaddr_in servaddr;
 
-	
 	if (argc != 2) 
 		err_quit("useage: IPADDRESS");
 
-	printf("sss");
 	if ( (sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) 
 		err_sys("socket error");
 	
-	printf("sss");
-
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_port = htons(13);
