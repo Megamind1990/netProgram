@@ -8,8 +8,9 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
-#define MAXLINE 4096
 
+#define MAXLINE 4096
+#define LISTENQ 1024
 
 void err_sys(const char* fmt, ...);
 void err_quit(const char* fmt, ...);
