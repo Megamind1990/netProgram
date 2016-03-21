@@ -1,2 +1,0 @@
-nplib: error.o
-
