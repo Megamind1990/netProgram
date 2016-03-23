@@ -4,7 +4,7 @@ daytimesrv: daytimesrv.o
 CFLAGS += -I ../unplib
 
 LDFLAGS += -L ../unplib
-LDFLAGS += -static -lunp
+LDFLAGS += -lunp
 
 
 clean:
