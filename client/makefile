@@ -1,6 +1,11 @@
 CC=gcc
-CFLAGS=-Wall -g
-daytimecli: error.o daytimecli.o
-clean:
-	rm -f daytimecli.o daytimecli error.o
+daytimecli: daytimecli.o
 
+CFLAGS += -I ../unplib
+
+LDFLAGS += -L ../unplib
+LDFLAGS += -lunp
+
+
+clean:
+	rm -rf *.o daytimecli
