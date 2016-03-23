@@ -1,5 +1,6 @@
 CC=gcc
 daytimecli: daytimecli.o
+	gcc daytimecli.o ${LDFLAGS} -o daytimecli
 
 CFLAGS += -I ../unplib
 
