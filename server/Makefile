@@ -1,4 +1,5 @@
 CC=gcc
+
 daytimesrv: daytimesrv.o
 	gcc daytimesrv.o ${LDFLAGS} -o daytimesrv
 
