@@ -3,9 +3,9 @@ CC=gcc
 daytimesrv: daytimesrv.o
 	gcc daytimesrv.o ${LDFLAGS} -o daytimesrv
 
-CFLAGS += -I ../unplib
+CFLAGS += -I ../../unplib
 
-LDFLAGS += -L ../unplib
+LDFLAGS += -L ../../unplib
 LDFLAGS += -lunp
 
 

@@ -2,9 +2,9 @@ CC=gcc
 daytimecli: daytimecli.o
 	gcc daytimecli.o ${LDFLAGS} -o daytimecli
 
-CFLAGS += -I ../unplib
+CFLAGS += -I ../../unplib
 
-LDFLAGS += -L ../unplib
+LDFLAGS += -L ../../unplib
 LDFLAGS += -lunp
 
 

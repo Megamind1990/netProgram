@@ -11,6 +11,7 @@
 
 #define MAXLINE 4096
 #define LISTENQ 1024
+#define SERV_PORT 9877
 
 void err_sys(const char* fmt, ...);
 void err_quit(const char* fmt, ...);
