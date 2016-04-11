@@ -1,4 +1,4 @@
-NPLIB_OBJS = error.o
+NPLIB_OBJS = error.o writen.o readn.o readline1.o wrapsock.o
 
 all: ${NPLIB_OBJS}
 	ar rsv libunp.a $?

@@ -1,7 +1,7 @@
-CC = gcc
+CC=gcc
 
-echocli: echocli.o
-	gcc echocli.o ${LDLAGS} -o echocli
+echocli: echocli.o str_cli.o
+	gcc str_cli.o echocli.o ${LDFLAGS} -o echocli
 
 CFLAGS += -I ../../unplib
 LDFLAGS += -L ../../unplib

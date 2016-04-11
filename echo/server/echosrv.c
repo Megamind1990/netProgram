@@ -6,24 +6,26 @@ int main(int argc, char **argv) {
 	socklen_t clilen;
 	struct sockaddr_in cliaddr, srvaddr;
 
-	listenfd = socket(AF_INET, SOCK_STREAM, 0);
+	listenfd = Socket(AF_INET, SOCK_STREAM, 0);
 	
 	bzero(&srvaddr, sizeof(struct sockaddr));
 	srvaddr.sin_family = AF_INET;
 	srvaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	srvaddr.sin_port = htons(SERV_PORT);
 
-	bind(listenfd, (struct sockaddr*) &srvaddr, sizeof(struct sockaddr));
+	Bind(listenfd, (struct sockaddr*) &srvaddr, sizeof(struct sockaddr));
 
-	listen(listenfd, LISTENQ);
+	Listen(listenfd, LISTENQ);
 
 	for(;;) {
 		clilen = sizeof(cliaddr);
-		connfd = accept(listenfd, (struct sockaddr*) &cliaddr, &clilen);
+		connfd = Accept(listenfd, (struct sockaddr*) &cliaddr, &clilen);
 
 		if (childpid = fork() == 0) {
+		
+			printf("one more thread\n");
 			close(listenfd);
-			//str_echo(connfd);
+			str_echo(connfd);
 			exit(0);
 		}
 
