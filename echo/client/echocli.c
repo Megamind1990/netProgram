@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 	servaddr.sin_port = htons(SERV_PORT);
 	inet_pton(AF_INET, argv[1], &servaddr.sin_addr);
 
-    Connect(sockfd, (struct sockaddr*) &servaddr, sizeof(struct sockaddr));
+	Connect(sockfd, (struct sockaddr*) &servaddr, sizeof(struct sockaddr));
 	str_cli(stdin, sockfd);
 
 	exit(0);

@@ -6,7 +6,7 @@ void str_cli(FILE *fp, int sockfd) {
 
 	while (fgets(sendline, MAXLINE, fp) != NULL) {
 
-		int n = writen(sockfd, sendline, strlen(sendline));
+		writen(sockfd, sendline, strlen(sendline));
 
 		if ( (recvlen = readline(sockfd, recvline, MAXLINE)) == 0) {
 			err_quit("str_cli: server terminated ");

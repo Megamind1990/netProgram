@@ -13,6 +13,8 @@ int main(int argc, char **argv) {
 	srvaddr.sin_addr.s_addr = htonl(INADDR_ANY);
 	srvaddr.sin_port = htons(SERV_PORT);
 
+	int reuse = 1;
+	setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
 	Bind(listenfd, (struct sockaddr*) &srvaddr, sizeof(struct sockaddr));
 
 	Listen(listenfd, LISTENQ);
