@@ -8,10 +8,12 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
+#include <signal.h>
 
 #define MAXLINE 4096
 #define LISTENQ 1024
 #define SERV_PORT 9877
+typedef void Sigfunc (int);
 
 void err_sys(const char* fmt, ...);
 void err_quit(const char* fmt, ...);

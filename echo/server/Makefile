@@ -1,7 +1,7 @@
 CC = gcc
 
-echosrv: echosrv.o str_echo.o
-	gcc echosrv.o str_echo.o ${LDFLAGS} -o echosrv
+echosrv: sigchldwait.o echosrv.o str_echo.o
+	gcc echosrv.o str_echo.o sigchldwait.o ${LDFLAGS} -o echosrv
 
 CFLAGS += -I ../../unplib
 LDFLAGS += -L ../../unplib

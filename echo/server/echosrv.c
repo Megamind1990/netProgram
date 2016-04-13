@@ -1,5 +1,7 @@
 #include "unp.h"
 
+void sig_chld(int);
+
 int main(int argc, char **argv) {
 	int listenfd, connfd;
 	pid_t childpid;
@@ -19,13 +21,12 @@ int main(int argc, char **argv) {
 
 	Listen(listenfd, LISTENQ);
 
+    Signal(SIGCHLD, sig_chld);
 	for(;;) {
 		clilen = sizeof(cliaddr);
 		connfd = Accept(listenfd, (struct sockaddr*) &cliaddr, &clilen);
 
 		if (childpid = fork() == 0) {
-		
-			printf("one more thread\n");
 			close(listenfd);
 			str_echo(connfd);
 			exit(0);
