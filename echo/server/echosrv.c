@@ -24,7 +24,12 @@ int main(int argc, char **argv) {
     Signal(SIGCHLD, sig_chld);
 	for(;;) {
 		clilen = sizeof(cliaddr);
-		connfd = Accept(listenfd, (struct sockaddr*) &cliaddr, &clilen);
+		if ( （connfd = Accept(listenfd, (struct sockaddr*) &cliaddr, &clilen)） < 0) {
+			if (errno == EINTR)
+				continue;
+			else 
+				err_sys("accept error");
+		}
 
 		if (childpid = fork() == 0) {
 			close(listenfd);

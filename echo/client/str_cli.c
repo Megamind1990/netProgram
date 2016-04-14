@@ -14,4 +14,5 @@ void str_cli(FILE *fp, int sockfd) {
 
 		fputs(recvline, stdout);
 	}
+	printf("str_cli return\n");
 }
