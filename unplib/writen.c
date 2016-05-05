@@ -24,3 +24,11 @@ ssize_t writen(int fd, const void* vptr, size_t n) {
 
 	return (n-nleft);
 }
+
+
+int Writen(int fd, const void* vptr, size_t n) {
+	int n = 0;
+
+	if (n )
+
+}
