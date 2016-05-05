@@ -1,18 +1,43 @@
 #include "unp.h"
 
 void str_cli(FILE *fp, int sockfd) {
-	char sendline[MAXLINE], recvline[MAXLINE];
-	int recvlen = 0;
+	int maxfdp1, stdineof;
+	fd_set rset;
+	char buf[MAXLINE];
+	int n;
 
-	while (fgets(sendline, MAXLINE, fp) != NULL) {
+	stdineof = 0;
+	FD_ZERO(&rset);
 
-		writen(sockfd, sendline, strlen(sendline));
+	for (;;) {
+		if (stdineof == 0)
+			FD_SET(fileno(fp), &rset);
+		FD_SET(sockfd, &rset);
+		maxfdp1 = max(fileno(fp), sockfd) + 1;
 
-		if ( (recvlen = readline(sockfd, recvline, MAXLINE)) == 0) {
-			err_quit("str_cli: server terminated ");
+		Select(maxfdp1, &rset, NULL, NULL, NULL);
+
+		if (FD_ISSET(sockfd, &rset)) {
+			if ( (n = Read(sockfd, buf, MAXLINE)) == 0){
+				if (stdineof == 0) 
+					return;
+				else 
+					err_quit("str_cli: server terminated prematurely");
+			}
+
+			Write(fileno(stdout), buf, n);
 		}
 
-		fputs(recvline, stdout);
+		if (FD_ISSET(fileno(fp), &rset)) {
+			if ( (n = Read(fileno(fp), buf, MAXLINE)) == 0) {
+				stdineof = 1;
+				Shutdown(sockfd, SHUT_WR);
+				FD_CLR(fileno(fp), &rset);
+				continue;
+			}
+
+			Writen(sockfd, buf, n);
+		}
+
 	}
-	printf("str_cli return\n");
 }

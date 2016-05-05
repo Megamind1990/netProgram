@@ -49,3 +49,15 @@ int Accept(int fd, struct sockaddr* cliaddr, socklen_t *addrlen) {
 
 	return n;
 }
+
+int Select(int maxfdp1, fd_set* readset, fd_set* writeset, fd_set* exceptset, const struct timeval* timeout) {
+	int n;
+
+	if ( (n = select(maxfdp1, readset, writeset, exceptset, timeout)) <=0) {
+		if (n == 0) {
+			err_sys("select error");
+		}
+	}  
+
+	return n;
+}
